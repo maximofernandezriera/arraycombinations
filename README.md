@@ -32,28 +32,28 @@ Nos piden contar cuántas combinaciones únicas de arrays podemos formar al esco
 
 # java
 
-public static int contar_combinaciones_unicas(int[][] arrays) {
-    int cantidad_total = 1;
-    for (int idx = 0; idx < arrays.length; idx++) {
-        int[] subarray = arrays[idx];
-        int cont_opciones = 0;
-        int[] array_opciones = new int[subarray.length];
-        int opciones_size = 0;
-        for (int j = 0; j < subarray.length; j++) {
-            int elemento = subarray[j];
-            boolean existe = false;
-            for (int i = 0; i < opciones_size; i++) {
-                if (array_opciones[i] == elemento) {
-                    existe = true;
-                    break;
+        public static int contar_combinaciones_unicas(int[][] arrays) {
+            int cantidad_total = 1;
+            for (int idx = 0; idx < arrays.length; idx++) {
+                int[] subarray = arrays[idx];
+                int cont_opciones = 0;
+                int[] array_opciones = new int[subarray.length];
+                int opciones_size = 0;
+                for (int j = 0; j < subarray.length; j++) {
+                    int elemento = subarray[j];
+                    boolean existe = false;
+                    for (int i = 0; i < opciones_size; i++) {
+                        if (array_opciones[i] == elemento) {
+                            existe = true;
+                            break;
+                        }
+                    }
+                    if (!existe) {
+                        array_opciones[opciones_size++] = elemento;
+                        cont_opciones++;
+                    }
                 }
+                cantidad_total *= cont_opciones;
             }
-            if (!existe) {
-                array_opciones[opciones_size++] = elemento;
-                cont_opciones++;
-            }
+            return cantidad_total;
         }
-        cantidad_total *= cont_opciones;
-    }
-    return cantidad_total;
-}
